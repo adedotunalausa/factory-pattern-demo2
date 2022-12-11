@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+  postgres-db:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=demo
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=pode_store
+
+  factory-pattern-demo2-api:
+    container_name: factory-pattern-demo2
+    image: factory-pattern-demo2-1.0.0
+    build:
+      context: .
+    ports:
+      - "7785:7785"
+    restart: always
+    depends_on:
+      - postgres-db

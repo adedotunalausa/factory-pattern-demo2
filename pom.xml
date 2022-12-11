@@ -10,9 +10,9 @@
     </parent>
     <groupId>com.pode</groupId>
     <artifactId>factory-pattern-demo2</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>factory-pattern-demo2</name>
-    <description>factory-pattern-demo2</description>
+    <description>This is a service for demonstrating the benefits of using the factory pattern</description>
     <properties>
         <java.version>17</java.version>
     </properties>
