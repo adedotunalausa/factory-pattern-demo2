@@ -3,6 +3,7 @@ package com.pode.factorypatterndemo2.services.implementation;
 import com.pode.factorypatterndemo2.dto.BaseResponse;
 import com.pode.factorypatterndemo2.dto.ConfigDto;
 import com.pode.factorypatterndemo2.enums.ConfigEnum;
+import com.pode.factorypatterndemo2.exceptions.ResourceNotFoundException;
 import com.pode.factorypatterndemo2.model.Config;
 import com.pode.factorypatterndemo2.repository.ConfigRepository;
 import com.pode.factorypatterndemo2.services.ConfigService;
@@ -12,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;
+import java.util.Optional;
 
 @Slf4j
 @Service
@@ -34,6 +36,11 @@ public class ConfigServiceImpl implements ConfigService {
             return new BaseResponse<>(false, HttpStatus.BAD_REQUEST, Objects.nonNull(e.getMessage())? e.getMessage()
                     : "Service unavailable at the moment, please try again later!", null);
         }
+    }
+
+    @Override
+    public Config getConfigByKey(String configKey) {
+        return configRepository.findByConfigKey(configKey).orElseThrow(() -> new ResourceNotFoundException("Config not found!"));
     }
 
 }
