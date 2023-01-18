@@ -4,7 +4,6 @@ import com.pode.factorypatterndemo2.dto.BaseResponse;
 import com.pode.factorypatterndemo2.dto.CheckoutDto;
 import com.pode.factorypatterndemo2.dto.PaymentDto;
 import com.pode.factorypatterndemo2.enums.ConfigEnum;
-import com.pode.factorypatterndemo2.enums.PaymentProviders;
 import com.pode.factorypatterndemo2.model.Config;
 import com.pode.factorypatterndemo2.providers.PaymentProviderFactoryService;
 import com.pode.factorypatterndemo2.providers.PaymentProviderService;
@@ -41,7 +40,7 @@ public class CheckoutServiceImpl implements CheckoutService {
         String currentProvider = currentProviderConfig.getConfigValue();
         PaymentProviderService paymentProviderService = paymentProviderFactoryService.getPaymentProvider(currentProvider);
         PaymentDto paymentDto = new PaymentDto(checkoutDto.getAmount());
-        return paymentProviderService.makePayment(paymentDto);
+        return paymentProviderService.initiateTransfer(paymentDto);
     }
 
 }
